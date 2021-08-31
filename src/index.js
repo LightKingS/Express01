@@ -18,13 +18,13 @@ app.get('/clients', (req, res) => {
 
 app.get('/clients/:id', (req, res) => {
     const client = clients.filter(value => value.id == req.params.id)
-    res.json(client)
+    res.status(200).json(client)
 })
 
 app.post('/clients', (req, res) => {
     const client = req.body
     clients.push(client)
-    res.json(req.body)
+    res.status(201).json(req.body)
 })
 
 app.put('/clients/:id', (req, res) => {
@@ -32,13 +32,13 @@ app.put('/clients/:id', (req, res) => {
     const nome = req.body.nome
     const client = clients.filter(value => value.id == id)
     client[0].nome = nome
-    res.json(client)
+    res.status(200).json(client)
 })
 
 app.delete('/clients/:id', (req, res) => {
     const id = req.params.id
     clients = clients.filter(value => value.id != id)
-    res.json(clients)
+    res.status(204).json(clients)
 })
 
 app.listen(3000)
